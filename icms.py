@@ -67,8 +67,8 @@ driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table
 
 print("carregando datas")
 
-driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[4]/td[2]/input[1]" ).send_keys('07/07/2023')
-driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[5]/td[2]/input[1]" ).send_keys('07/07/2023')
+driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[4]/td[2]/input[1]" ).send_keys('31/07/2023')
+driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[5]/td[2]/input[1]" ).send_keys('31/07/2023')
 
 print("carregando competencias")
 
@@ -79,26 +79,42 @@ driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table
 
 print("mes")
 
-driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[7]/td[2]/div/input" ).click()
-driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[7]/td[2]/div/div[2]/span[7]" ).click()
+
+driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[7]/td[2]/div/input//div").send_keys("Maio")
+
+#driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[7]/td[2]/div/input" ).click()
+#driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[7]/td[2]/div/div[2]/span[12]").click()
+
+
+horario.sleep(100)
 
 print("ano")
 driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[8]/td[2]/div/input" ).click()
 driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[8]/td[2]/div/div[2]/span[2]" ).click()
 
-driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[10]/td[2]/input" ).send_keys("123456")
-driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[11]/td/div/table/tbody/tr[1]/td[2]/input" ).send_keys("10,00")
-driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[4]/tbody/tr[12]/td[2]/textarea" ).send_keys("Dae ref. 06/2023")
+                            
 
 
-driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table[5]/tbody/tr/td[1]/a/img" ).click()
 
+print("valores")
 
-WebDriverWait(driver, 70).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[2]/div/div[2]/div/form/table/tbody/tr[2]/td[1]/a/img")))
+driver.find_element(By.NAME,"txtNumeroDocumento" ).send_keys("123456")
+driver.find_element(By.NAME,"txtReceita" ).send_keys("10,00")
+driver.find_element(By.NAME,"txtInformacoes" ).send_keys("Dae ref. 06/2023")
+
+print("passou")
+
+horario.sleep(1)
+
+driver.find_element(By.NAME,"btnPagarViaInternet" ).click()
+
+horario.sleep(3)
+
+WebDriverWait(driver, 70).until(EC.element_to_be_clickable((By.NAME, "btnVisualizarImprimir")))
 
 print("salvando dae")
-driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/div/div[2]/div/form/table/tbody/tr[2]/td[1]/a/img" ).click()
+driver.find_element(By.NAME,"btnVisualizarImprimir" ).click()
 
-horario.sleep(5)
+horario.sleep(200)
 
 driver.quit()
